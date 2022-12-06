@@ -14,7 +14,16 @@ use fvm_ipld_encoding::{DAG_CBOR, RawBytes};
 #[repr(u64)]
 pub enum Method {
     Constructor = METHOD_CONSTRUCTOR,
+
     CustodyMiner,
+    ChangeWorkerAddress,
+    AddControlAddress,
+    DelControlAddress,
+    ChangePeerID,
+    ExtendSectorExpiration,
+    TerminateSectors,
+    WithdrawMinerBalance,
+    ChangeMultiaddrs,
 }
 
 #[no_mangle]
@@ -23,6 +32,14 @@ pub fn invoke(params: u32) -> u32 {
     let ret: Option<RawBytes> = match FromPrimitive::from_u64(method) {
         Some(Method::Constructor) => constructor(params),
         Some(Method::CustodyMiner) => custody_miner(params),
+        Some(Method::ChangeWorkerAddress) => change_worker_address(params),
+        Some(Method::AddControlAddress) => add_control_address(params),
+        Some(Method::DelControlAddress) => del_control_address(params),
+        Some(Method::ChangePeerID) => change_peerid(params),
+        Some(Method::ExtendSectorExpiration) => extend_sector_expiration(params),
+        Some(Method::TerminateSectors) => terminate_sectors(params),
+        Some(Method::WithdrawMinerBalance) => withdraw_miner_balance(params),
+        Some(Method::ChangeMultiaddrs) => change_multiaddrs(params),
         _ => abort!(USR_UNHANDLED_MESSAGE, "unrecognized method"),
     };
 
