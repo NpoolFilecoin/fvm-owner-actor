@@ -3,5 +3,12 @@ name = "fil_owner_actor"
 version = "0.1.0"
 edition = "2021"
 
+[dependencies]
+fvm_sdk           = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
+fvm_shared        = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
+fvm_ipld_encoding = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
+num-derive        = "0.3.3"
+num-traits        = "0.2.15"
+
 [build-dependencies]
 substrate-wasm-builder = "4.0.0"
