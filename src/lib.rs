@@ -1,6 +1,9 @@
 #[macro_use]
 mod abort;
 
+mod custody;
+use crate::custody::*;
+
 use num_derive::FromPrimitive;
 use num_traits::FromPrimitive;
 use fvm_shared::METHOD_CONSTRUCTOR;
@@ -19,7 +22,7 @@ pub fn invoke(params: u32) -> u32 {
     let method = fvm_sdk::message::method_number();
     let ret: Option<RawBytes> = match FromPrimitive::from_u64(method) {
         Some(Method::Constructor) => constructor(params),
-        Some(Method::CustodyMiner) => abort!(USR_UNHANDLED_MESSAGE, "not implemented"),
+        Some(Method::CustodyMiner) => custody_miner(params),
         _ => abort!(USR_UNHANDLED_MESSAGE, "unrecognized method"),
     };
 
