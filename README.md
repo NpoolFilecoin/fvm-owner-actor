@@ -36,3 +36,9 @@ Implementation of owner account with FVM native actor
 
 ### Withdraw balance
 - [ ] User withdraw balance
+
+### Legacy deposit
+- [ ] Support somebody to submit the deposit request when FVM do not support to detect invocation of method 0
+
+### Sealing vote
+- [ ] Deposited account vote to stop daily sealing transfer
