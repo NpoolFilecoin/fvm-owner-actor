@@ -4,6 +4,9 @@ mod abort;
 mod custody;
 use crate::custody::*;
 
+mod deposit;
+use crate::deposit::*;
+
 use num_derive::FromPrimitive;
 use num_traits::FromPrimitive;
 use fvm_shared::METHOD_CONSTRUCTOR;
@@ -24,6 +27,10 @@ pub enum Method {
     TerminateSectors,
     WithdrawMinerBalance,
     ChangeMultiaddrs,
+
+    /// Legacy method: add deposit
+    ///  It help to submit the deposit account and amount before we can detect method 0 invocation to myself
+    AddDeposit,
 }
 
 #[no_mangle]
@@ -31,6 +38,7 @@ pub fn invoke(params: u32) -> u32 {
     let method = fvm_sdk::message::method_number();
     let ret: Option<RawBytes> = match FromPrimitive::from_u64(method) {
         Some(Method::Constructor) => constructor(params),
+        // Custody miner method
         Some(Method::CustodyMiner) => custody_miner(params),
         Some(Method::ChangeWorkerAddress) => change_worker_address(params),
         Some(Method::AddControlAddress) => add_control_address(params),
@@ -40,6 +48,8 @@ pub fn invoke(params: u32) -> u32 {
         Some(Method::TerminateSectors) => terminate_sectors(params),
         Some(Method::WithdrawMinerBalance) => withdraw_miner_balance(params),
         Some(Method::ChangeMultiaddrs) => change_multiaddrs(params),
+        // Legacy deposit method
+        Some(Method::AddDeposit) => add_deposit(params),
         _ => abort!(USR_UNHANDLED_MESSAGE, "unrecognized method"),
     };
 
