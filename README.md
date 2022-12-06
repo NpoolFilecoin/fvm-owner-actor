@@ -27,3 +27,6 @@
 ### Upgrade governance
 - [ ] Vote mechanism
 - [ ] Upgrade implementation
+
+### Initial offer condition
+- [ ] Initial parameter of custody offer
