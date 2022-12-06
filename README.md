@@ -2,7 +2,7 @@
 
 [![Test](https://github.com/NpoolFilecoin/fil-owner-actor/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/NpoolFilecoin/fil-owner-actor/actions/workflows/test.yml)
 
-Implementation of ability of owner account with FVM native actor
+Implementation of owner account with FVM native actor
 
 ## Functionalities
 ### Base functionalities
