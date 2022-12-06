@@ -18,7 +18,7 @@ pub enum Method {
 pub fn invoke(params: u32) -> u32 {
     let method = fvm_sdk::message::method_number();
     let ret: Option<RawBytes> = match FromPrimitive::from_u64(method) {
-        Some(Method::Constructor) => abort!(USR_UNHANDLED_MESSAGE, "not implemented"),
+        Some(Method::Constructor) => constructor(params),
         Some(Method::CustodyMiner) => abort!(USR_UNHANDLED_MESSAGE, "not implemented"),
         _ => abort!(USR_UNHANDLED_MESSAGE, "unrecognized method"),
     };
@@ -30,6 +30,11 @@ pub fn invoke(params: u32) -> u32 {
             Err(err) => abort!(USR_SERIALIZATION, "failed to store return value: {}", err),
         },
     }
+}
+
+/// Constructor method with initial setting of the actor
+pub fn constructor(_params: u32) -> Option<RawBytes> {
+    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
 }
 
 #[cfg(test)]
