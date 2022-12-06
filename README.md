@@ -30,3 +30,6 @@ Implementation of ability of owner account with FVM native actor
 
 ### Initial offer condition
 - [ ] Initial parameter of custody offer
+
+### Withdraw balance
+- [ ] User withdraw balance
