@@ -1,4 +1,7 @@
 # FIL Owner Actor
+
+[![Test](https://github.com/NpoolPlatform/fil-owner-actor/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/NpoolPlatform/fil-owner-actor/actions/workflows/test.yml)
+
 Implementation of ability of owner account with FVM native actor
 
 ## Functionalities
