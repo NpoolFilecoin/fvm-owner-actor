@@ -22,11 +22,18 @@ use crate::withdraw::*;
 mod sealing;
 use crate::sealing::*;
 
+mod state;
+use crate::state::*;
+
+mod blockstore;
+
 use num_derive::FromPrimitive;
 use num_traits::FromPrimitive;
 use fvm_shared::METHOD_CONSTRUCTOR;
 use fvm_sdk::NO_DATA_BLOCK_ID;
 use fvm_ipld_encoding::{DAG_CBOR, RawBytes};
+use fvm_shared::ActorID;
+use fvm_sdk as sdk;
 
 #[derive(FromPrimitive)]
 #[repr(u64)]
@@ -118,6 +125,19 @@ pub fn invoke(params: u32) -> u32 {
 
 /// Constructor method with initial setting of the actor
 pub fn constructor(params: u32) -> Option<RawBytes> {
+    // This constant should be part of the SDK.
+    const INIT_ACTOR_ADDR: ActorID = 1;
+
+    // Should add SDK sugar to perform ACL checks more succinctly.
+    // i.e. the equivalent of the validate_* builtin-actors runtime methods.
+    // https://github.com/filecoin-project/builtin-actors/blob/master/actors/runtime/src/runtime/fvm.rs#L110-L146
+    if sdk::message::caller() != INIT_ACTOR_ADDR {
+        abort!(USR_FORBIDDEN, "constructor invoked by non-init actor");
+    }
+
+    let state = State::default();
+    state.save();
+
     setting_initialize(params)?;
     sealing_initialize(params)
 }
