@@ -6,7 +6,7 @@ use fvm_ipld_encoding::Cbor;
 use fvm_ipld_encoding::tuple::{Deserialize_tuple, Serialize_tuple};
 use fvm_shared::address::Address;
 
-use state::Beneficiary;
+use state::{State, Beneficiary};
 use params::deserialize;
 
 #[derive(Serialize_tuple, Deserialize_tuple, Clone)]
@@ -17,10 +17,23 @@ pub struct CustodyMinerParams {
 impl Cbor for CustodyMinerParams {}
 
 pub fn custody_miner(params: u32) -> Option<RawBytes> {
-    let _params = match deserialize::<CustodyMinerParams>(params) {
+    let params = match deserialize::<CustodyMinerParams>(params) {
         Ok(params) => params,
         Err(err) => abort!(USR_SERIALIZATION, "{:?}", err),
     };
+
+    let state = State::load();
+    match state.miners.get(&params.miner_id) {
+        Some(_) => abort!(USR_ILLEGAL_STATE, "exist miner"),
+        None => {},
+    }
+
+    // TODO: get miner power
+    // TODO: get miner collateral
+    // TODO: get miner available balance
+    // TODO: get miner vesting
+
+    state.save();
 
     abort!(USR_UNHANDLED_MESSAGE, "not implemented")
 }
