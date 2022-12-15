@@ -6,7 +6,8 @@ use fvm_ipld_encoding::Cbor;
 use fvm_ipld_encoding::tuple::{Deserialize_tuple, Serialize_tuple};
 use fvm_shared::address::Address;
 
-use state::{State, Beneficiary};
+use state::State;
+use miner::{Miner, Beneficiary};
 use params::deserialize;
 
 #[derive(Serialize_tuple, Deserialize_tuple, Clone)]
@@ -22,7 +23,7 @@ pub fn custody_miner(params: u32) -> Option<RawBytes> {
         Err(err) => abort!(USR_SERIALIZATION, "{:?}", err),
     };
 
-    let state = State::load();
+    let mut state = State::load();
     match state.miners.get(&params.miner_id) {
         Some(_) => abort!(USR_ILLEGAL_STATE, "exist miner"),
         None => {},
@@ -32,6 +33,11 @@ pub fn custody_miner(params: u32) -> Option<RawBytes> {
     // TODO: get miner collateral
     // TODO: get miner available balance
     // TODO: get miner vesting
+
+    let mut miner = Miner::from_id(&params.miner_id);
+    miner.set_beneficiaries(params.beneficiaries);
+
+    state.miners.insert(params.miner_id, miner);
 
     state.save();
 

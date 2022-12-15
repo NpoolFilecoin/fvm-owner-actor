@@ -29,5 +29,8 @@ workspace = true
 [dependencies.blockstore]
 workspace = true
 
+[dependencies.miner]
+workspace = true
+
 [build-dependencies]
 substrate-wasm-builder = "4.0.0"

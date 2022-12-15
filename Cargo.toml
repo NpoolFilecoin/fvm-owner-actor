@@ -17,6 +17,7 @@ members = [
     "upgrade",
     "sealing",
     "withdraw",
+    "miner",
 ]
 
 [workspace.dependencies]
@@ -40,6 +41,7 @@ nft                  = { path = "./nft" }
 upgrade              = { path = "./upgrade" }
 sealing              = { path = "./sealing" }
 withdraw             = { path = "./withdraw" }
+miner                = { path = "./miner" }
 
 [dependencies.blockstore]
 workspace = true
@@ -69,6 +71,9 @@ workspace = true
 workspace = true
 
 [dependencies.withdraw]
+workspace = true
+
+[dependencies.miner]
 workspace = true
 
 [dependencies.fvm_sdk]

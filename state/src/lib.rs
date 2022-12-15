@@ -16,19 +16,7 @@ use cid::multihash::Code;
 use cid::Cid;
 
 use blockstore::Blockstore;
-
-#[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
-pub struct Beneficiary {
-    pub address: Address,
-    pub percent: u32,
-}
-
-#[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
-pub struct Miner {
-    pub initial_raw_power: u64,
-    pub initial_adj_power: u64,
-    pub beneficiaries: Vec<Beneficiary>,
-}
+use miner::Miner;
 
 #[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
 pub struct Deposit {
