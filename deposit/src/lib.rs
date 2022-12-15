@@ -1,9 +1,15 @@
-#[macro_use]
-extern crate abort;
+use fvm_shared::econ::TokenAmount;
+use cid::Cid;
+use thiserror::Error;
 
-use fvm_ipld_encoding::RawBytes;
+pub enum DepositError {
 
-pub fn add_deposit(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+}
+
+pub fn add_deposit(
+    amount: TokenAmount,
+    state: &Cid,
+) -> Result<(), DepositError> {
+    Ok(())
 }
 

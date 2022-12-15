@@ -305,19 +305,12 @@ dependencies = [
 name = "custody"
 version = "0.1.0"
 dependencies = [
- "abort",
  "beneficiary",
  "cid",
- "fvm_ipld_encoding",
- "fvm_sdk",
  "fvm_shared",
  "libp2p",
  "miner",
  "multiaddr 0.17.0",
- "params",
- "serde",
- "serde_tuple",
- "state",
  "substrate-wasm-builder",
  "thiserror",
 ]
@@ -352,11 +345,10 @@ dependencies = [
 name = "deposit"
 version = "0.1.0"
 dependencies = [
- "abort",
- "fvm_ipld_encoding",
- "fvm_sdk",
+ "cid",
  "fvm_shared",
  "substrate-wasm-builder",
+ "thiserror",
 ]
 
 [[package]]

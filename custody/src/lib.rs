@@ -1,9 +1,3 @@
-#[macro_use]
-extern crate abort;
-
-use fvm_ipld_encoding::RawBytes;
-use fvm_ipld_encoding::Cbor;
-use fvm_ipld_encoding::tuple::{Deserialize_tuple, Serialize_tuple};
 use fvm_shared::address::Address;
 use libp2p::PeerId;
 use fvm_shared::econ::TokenAmount;
@@ -14,7 +8,6 @@ use thiserror::Error;
 
 use miner::{Miner, MinerError};
 use beneficiary::{PercentBeneficiary, AmountBeneficiary};
-use params::deserialize;
 
 #[derive(Error, Debug)]
 pub enum CustodyError {
@@ -44,13 +37,6 @@ pub fn custody_miner(
     Ok(miner)
 }
 
-#[derive(Serialize_tuple, Deserialize_tuple, Clone)]
-pub struct ChangeWorkerAddressParams {
-    pub miner_id: Address,
-    pub new_worker: Address,
-}
-impl Cbor for ChangeWorkerAddressParams {}
-
 pub fn change_worker_address(
     miner_id: &Address,
     new_worker: &Address,
@@ -79,12 +65,19 @@ pub fn change_peerid(
     Ok(())
 }
 
-pub fn extend_sector_expiration(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn extend_sector_expiration(
+    miner_id: &Address,
+    // sectors
+    // target epoch
+) -> Result<(), CustodyError> {
+    Ok(())
 }
 
-pub fn terminate_sectors(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn terminate_sectors(
+    miner_id: &Address,
+    // sectors
+) -> Result<(), CustodyError> {
+    Ok(())
 }
 
 pub fn withdraw_miner_balance(
