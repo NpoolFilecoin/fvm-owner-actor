@@ -1,20 +1,28 @@
-#[macro_use]
-extern crate abort;
+use thiserror::Error;
+use fvm_shared::address::Address;
 
-use fvm_ipld_encoding::RawBytes;
+pub enum NftError {
+}
 
 /// Transfer nft to somebody then also transfer the amount benefit to target user
-pub fn transfer_nft(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn transfer_nft(
+    to: &Address,
+    // token id
+) -> Result<(), NftError> {
+    Ok(())
 }
 
 /// Cancel nft transfer within timeout
-pub fn cancel_transfer_nft(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn cancel_transfer_nft(
+    // token id
+) -> Result<(), NftError> {
+    Ok(())
 }
 
 /// Approve nft from somebody then get tbe amount benefit
-pub fn approve_nft(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn approve_nft(
+    // token id
+) -> Result<(), NftError> {
+    Ok(())
 }
 

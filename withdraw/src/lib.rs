@@ -1,9 +1,13 @@
-#[macro_use]
-extern crate abort;
+use thiserror::Error;
+use fvm_shared::econ::TokenAmount;
 
-use fvm_ipld_encoding::RawBytes;
+#[derive(Error, Debug)]
+pub enum WithdrawError {
+}
 
-pub fn withdraw_balance(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn withdraw_balance(
+    amount: TokenAmount,
+) -> Result<(), WithdrawError> {
+    Ok(())
 }
 

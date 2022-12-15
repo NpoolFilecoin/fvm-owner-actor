@@ -5,16 +5,13 @@ name = "sealing"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies.fvm_sdk]
-workspace = true
-
 [dependencies.fvm_ipld_encoding]
 workspace = true
 
-[dependencies.abort]
+[dependencies.fvm_shared]
 workspace = true
 
-[dependencies.fvm_shared]
+[dependencies.thiserror]
 workspace = true
 
 [dependencies.serde]

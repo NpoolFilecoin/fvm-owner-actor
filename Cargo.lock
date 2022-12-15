@@ -1057,11 +1057,9 @@ dependencies = [
 name = "nft"
 version = "0.1.0"
 dependencies = [
- "abort",
- "fvm_ipld_encoding",
- "fvm_sdk",
  "fvm_shared",
  "substrate-wasm-builder",
+ "thiserror",
 ]
 
 [[package]]
@@ -1533,13 +1531,12 @@ checksum = "d29ab0c6d3fc0ee92fe66e2d99f700eab17a8d57d1c1d3b748380fb20baa78cd"
 name = "sealing"
 version = "0.1.0"
 dependencies = [
- "abort",
  "fvm_ipld_encoding",
- "fvm_sdk",
  "fvm_shared",
  "serde",
  "serde_tuple",
  "substrate-wasm-builder",
+ "thiserror",
 ]
 
 [[package]]
@@ -1930,14 +1927,13 @@ checksum = "d86a8dc7f45e4c1b0d30e43038c38f274e77af056aa5f74b93c2cf9eb3c1c836"
 name = "upgrade"
 version = "0.1.0"
 dependencies = [
- "abort",
  "cid",
  "fvm_ipld_encoding",
- "fvm_sdk",
  "fvm_shared",
  "serde",
  "serde_tuple",
  "substrate-wasm-builder",
+ "thiserror",
 ]
 
 [[package]]
@@ -2176,11 +2172,9 @@ checksum = "f40009d85759725a34da6d89a94e63d7bdc50a862acf0dbc7c8e488f1edcb6f5"
 name = "withdraw"
 version = "0.1.0"
 dependencies = [
- "abort",
- "fvm_ipld_encoding",
- "fvm_sdk",
  "fvm_shared",
  "substrate-wasm-builder",
+ "thiserror",
 ]
 
 [[package]]

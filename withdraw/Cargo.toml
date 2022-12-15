@@ -5,16 +5,10 @@ name = "withdraw"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies.fvm_sdk]
-workspace = true
-
-[dependencies.fvm_ipld_encoding]
-workspace = true
-
-[dependencies.abort]
-workspace = true
-
 [dependencies.fvm_shared]
+workspace = true
+
+[dependencies.thiserror]
 workspace = true
 
 [build-dependencies]
