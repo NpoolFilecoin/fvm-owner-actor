@@ -34,9 +34,25 @@ pub struct Deposit {
 }
 
 #[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
+pub struct Upgrade {
+    pub candidate: Cid,
+    pub submitter: Address,
+    pub approved_percent: u32,
+    pub rejected_percent: u32,
+}
+
+#[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug, Default)]
+pub struct Sealing {
+    pub approved_percent: u32,
+    pub rejected_percent: u32,
+}
+
+#[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
 pub struct State {
     pub miners: HashMap<Address, Miner>,
     pub deposits: Vec<Deposit>,
+    pub upgrade: Option<Upgrade>,
+    pub sealing: Sealing,
 }
 
 impl State {
@@ -77,6 +93,8 @@ impl Default for State {
         Self {
             miners: HashMap::new(),
             deposits: Vec::new(),
+            upgrade: None,
+            sealing: Sealing::default(),
         }
     }
 }
