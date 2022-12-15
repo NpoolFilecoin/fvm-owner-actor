@@ -57,12 +57,18 @@ pub struct ChangeWorkerAddressParams {
 impl Cbor for ChangeWorkerAddressParams {}
 
 pub fn change_worker_address(params: u32) -> Option<RawBytes> {
-    let _params = match deserialize::<ChangeWorkerAddressParams>(params) {
+    let params = match deserialize::<ChangeWorkerAddressParams>(params) {
         Ok(params) => params,
         Err(err) => abort!(USR_SERIALIZATION, "{:?}", err),
     };
 
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+    match custody::change_worker_address(
+        &params.miner_id,
+        &params.new_worker,
+    ) {
+        Ok(_) => None,
+        Err(err) => abort!(USR_ILLEGAL_STATE, "{:?}", err),
+    }
 }
 
 pub fn add_control_address(_params: u32) -> Option<RawBytes> {
