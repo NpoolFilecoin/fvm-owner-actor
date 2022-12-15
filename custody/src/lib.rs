@@ -5,6 +5,9 @@ use fvm_ipld_encoding::RawBytes;
 use fvm_ipld_encoding::Cbor;
 use fvm_ipld_encoding::tuple::{Deserialize_tuple, Serialize_tuple};
 use fvm_shared::address::Address;
+use libp2p::PeerId;
+use fvm_shared::econ::TokenAmount;
+use multiaddr::Multiaddr;
 
 use cid::Cid;
 use thiserror::Error;
@@ -48,25 +51,32 @@ pub struct ChangeWorkerAddressParams {
 }
 impl Cbor for ChangeWorkerAddressParams {}
 
-pub fn change_worker_address(params: u32) -> Option<RawBytes> {
-    let _params = match deserialize::<ChangeWorkerAddressParams>(params) {
-        Ok(params) => params,
-        Err(err) => abort!(USR_SERIALIZATION, "{:?}", err),
-    };
-
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn change_worker_address(
+    miner_id: &Address,
+    new_worker: &Address,
+) -> Result<(), CustodyError> {
+    Ok(())
 }
 
-pub fn add_control_address(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn add_control_address(
+    miner_id: &Address,
+    new_control: &Address,
+) -> Result<(), CustodyError> {
+    Ok(())
 }
 
-pub fn del_control_address(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn del_control_address(
+    miner_id: &Address,
+    del_control: &Address,
+) -> Result<(), CustodyError> {
+    Ok(())
 }
 
-pub fn change_peerid(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn change_peerid(
+    miner_id: &Address,
+    peer_id: &PeerId,
+) -> Result<(), CustodyError> {
+    Ok(())
 }
 
 pub fn extend_sector_expiration(_params: u32) -> Option<RawBytes> {
@@ -77,10 +87,16 @@ pub fn terminate_sectors(_params: u32) -> Option<RawBytes> {
     abort!(USR_UNHANDLED_MESSAGE, "not implemented")
 }
 
-pub fn withdraw_miner_balance(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn withdraw_miner_balance(
+    miner_id: &Address,
+    amount: TokenAmount,
+) -> Result<(), CustodyError> {
+    Ok(())
 }
 
-pub fn change_multiaddrs(_params: u32) -> Option<RawBytes> {
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+pub fn change_multiaddrs(
+    miner_id: &Address,
+    multiaddrs: Vec<Multiaddr>,
+) -> Result<(), CustodyError> {
+    Ok(())
 }

@@ -41,5 +41,11 @@ workspace = true
 [dependencies.beneficiary]
 workspace = true
 
+[dependencies.libp2p]
+workspace = true
+
+[dependencies.multiaddr]
+workspace = true
+
 [build-dependencies]
 substrate-wasm-builder = "4.0.0"

@@ -50,6 +50,8 @@ power                = { path = "./power" }
 beneficiary          = { path = "./beneficiary" }
 api                  = { path = "./api" }
 thiserror            = "1.0.37"
+libp2p               = { version = "0.50.0", features = ["wasm-bindgen"] }
+multiaddr            = "0.17.0"
 
 [dependencies.blockstore]
 workspace = true
