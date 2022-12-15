@@ -18,6 +18,7 @@ members = [
     "sealing",
     "withdraw",
     "miner",
+    "power",
 ]
 
 [workspace.dependencies]
@@ -25,6 +26,7 @@ fvm_sdk              = { git = "https://github.com/filecoin-project/ref-fvm.git"
 fvm_shared           = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
 fvm_ipld_encoding    = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
 fvm_ipld_blockstore  = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
+fvm_ipld_hamt        = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
 num-derive           = "0.3.3"
 num-traits           = "0.2.15"
 cid                  = { version = "0.8.4", default-features = false }
@@ -42,6 +44,8 @@ upgrade              = { path = "./upgrade" }
 sealing              = { path = "./sealing" }
 withdraw             = { path = "./withdraw" }
 miner                = { path = "./miner" }
+power                = { path = "./power" }
+thiserror            = "1.0.37"
 
 [dependencies.blockstore]
 workspace = true
@@ -74,6 +78,9 @@ workspace = true
 workspace = true
 
 [dependencies.miner]
+workspace = true
+
+[dependencies.power]
 workspace = true
 
 [dependencies.fvm_sdk]

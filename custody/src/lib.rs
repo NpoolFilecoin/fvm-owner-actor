@@ -6,6 +6,8 @@ use fvm_ipld_encoding::Cbor;
 use fvm_ipld_encoding::tuple::{Deserialize_tuple, Serialize_tuple};
 use fvm_shared::address::Address;
 
+use cid::Cid;
+
 use state::State;
 use miner::{Miner, Beneficiary};
 use params::deserialize;
@@ -13,6 +15,8 @@ use params::deserialize;
 #[derive(Serialize_tuple, Deserialize_tuple, Clone)]
 pub struct CustodyMinerParams {
     pub miner_id: Address,
+    /// We cannot get power actor state here, so we need pass it outside
+    pub power_actor_state: Cid,
     pub beneficiaries: Vec<Beneficiary>,
 }
 impl Cbor for CustodyMinerParams {}
@@ -30,6 +34,10 @@ pub fn custody_miner(params: u32) -> Option<RawBytes> {
     }
 
     let mut miner = Miner::from_id(&params.miner_id);
+    match miner.initialize_info(&params.power_actor_state) {
+        Ok(_) => {},
+        Err(err) => abort!(USR_ILLEGAL_STATE, "{:?}", err),
+    }
     miner.set_beneficiaries(params.beneficiaries);
 
     state.miners.insert(params.miner_id, miner);

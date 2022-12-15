@@ -1,12 +1,9 @@
 cargo-features = ["workspace-inheritance"]
 
 [package]
-name = "miner"
+name = "power"
 version = "0.1.0"
 edition = "2021"
-
-[dependencies.fvm_sdk]
-workspace = true
 
 [dependencies.fvm_ipld_encoding]
 workspace = true
@@ -15,9 +12,6 @@ workspace = true
 workspace = true
 
 [dependencies.serde]
-workspace = true
-
-[dependencies.abort]
 workspace = true
 
 [dependencies.serde_tuple]
@@ -29,13 +23,10 @@ workspace = true
 [dependencies.blockstore]
 workspace = true
 
-[dependencies.power]
-workspace = true
-
 [dependencies.thiserror]
 workspace = true
 
-[dependencies.fvm_ipld_hamt]
+[dependencies.anyhow]
 workspace = true
 
 [build-dependencies]

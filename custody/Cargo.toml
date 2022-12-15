@@ -23,6 +23,9 @@ workspace = true
 [dependencies.serde_tuple]
 workspace = true
 
+[dependencies.cid]
+workspace = true
+
 [dependencies.miner]
 workspace = true
 
