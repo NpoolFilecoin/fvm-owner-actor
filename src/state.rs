@@ -41,7 +41,7 @@ pub struct Upgrade {
     pub rejected_percent: u32,
 }
 
-#[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug, Default)]
+#[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
 pub struct Sealing {
     pub approved_percent: u32,
     pub rejected_percent: u32,
@@ -94,7 +94,10 @@ impl Default for State {
             miners: HashMap::new(),
             deposits: Vec::new(),
             upgrade: None,
-            sealing: Sealing::default(),
+            sealing: Sealing {
+                approved_percent: 100,
+                rejected_percent: 0,
+            },
         }
     }
 }

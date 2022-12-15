@@ -76,7 +76,7 @@ pub enum Method {
 pub fn invoke(params: u32) -> u32 {
     let method = fvm_sdk::message::method_number();
     let ret: Option<RawBytes> = match FromPrimitive::from_u64(method) {
-        Some(Method::Constructor) => constructor(params),
+        Some(Method::Constructor) => constructor(),
 
         // Custody miner method
         Some(Method::CustodyMiner) => custody_miner(params),
@@ -121,7 +121,7 @@ pub fn invoke(params: u32) -> u32 {
 }
 
 /// Constructor method
-pub fn constructor(params: u32) -> Option<RawBytes> {
+pub fn constructor() -> Option<RawBytes> {
     // This constant should be part of the SDK.
     const INIT_ACTOR_ADDR: ActorID = 1;
 
@@ -135,7 +135,7 @@ pub fn constructor(params: u32) -> Option<RawBytes> {
     let state = State::default();
     state.save();
 
-    sealing_initialize(params)
+    None
 }
 
 #[cfg(test)]
