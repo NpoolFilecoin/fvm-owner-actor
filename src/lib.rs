@@ -13,9 +13,6 @@ use crate::nft::*;
 mod upgrade;
 use crate::upgrade::*;
 
-mod setting;
-use crate::setting::*;
-
 mod withdraw;
 use crate::withdraw::*;
 
@@ -123,7 +120,7 @@ pub fn invoke(params: u32) -> u32 {
     }
 }
 
-/// Constructor method with initial setting of the actor
+/// Constructor method
 pub fn constructor(params: u32) -> Option<RawBytes> {
     // This constant should be part of the SDK.
     const INIT_ACTOR_ADDR: ActorID = 1;
@@ -138,7 +135,6 @@ pub fn constructor(params: u32) -> Option<RawBytes> {
     let state = State::default();
     state.save();
 
-    setting_initialize(params)?;
     sealing_initialize(params)
 }
 
