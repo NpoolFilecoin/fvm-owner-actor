@@ -8,6 +8,7 @@ edition = "2021"
 [workspace]
 members = [
     "blockstore",
+    "abort",
 ]
 
 [workspace.dependencies]
@@ -22,8 +23,12 @@ serde                = { version = "1.0.136", features = ["derive"] }
 serde_tuple          = "0.5"
 anyhow               = "1.0.66"
 blockstore           = { path = "./blockstore" }
+abort                = { path = "./abort" }
 
 [dependencies.blockstore]
+workspace = true
+
+[dependencies.abort]
 workspace = true
 
 [dependencies.fvm_sdk]

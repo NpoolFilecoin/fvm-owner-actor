@@ -1,0 +1,12 @@
+cargo-features = ["workspace-inheritance"]
+
+[package]
+name = "abort"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies.fvm_sdk]
+workspace = true
+
+[build-dependencies]
+substrate-wasm-builder = "4.0.0"

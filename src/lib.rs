@@ -1,5 +1,5 @@
 #[macro_use]
-mod abort;
+extern crate abort;
 
 mod custody;
 use crate::custody::*;

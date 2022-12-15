@@ -3,6 +3,14 @@
 version = 3
 
 [[package]]
+name = "abort"
+version = "0.1.0"
+dependencies = [
+ "fvm_sdk",
+ "substrate-wasm-builder",
+]
+
+[[package]]
 name = "ansi_term"
 version = "0.12.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -264,6 +272,7 @@ dependencies = [
 name = "fvm_owner_actor"
 version = "0.1.0"
 dependencies = [
+ "abort",
  "anyhow",
  "blockstore",
  "cid",

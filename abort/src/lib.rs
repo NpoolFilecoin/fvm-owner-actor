@@ -1,3 +1,4 @@
+#[macro_export]
 macro_rules! abort {
     ($code:ident, $msg:literal $(, $ex:expr)*) => {
         fvm_sdk::vm::abort(
