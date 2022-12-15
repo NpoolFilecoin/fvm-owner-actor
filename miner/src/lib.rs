@@ -26,7 +26,11 @@ pub struct Miner {
 
 impl Miner {
     pub fn from_id(id: &Address) -> Self {
-        // TODO: get initial setting
+        // TODO: get miner power
+        // TODO: get miner collateral
+        // TODO: get miner available balance
+        // TODO: get miner vesting
+
         Self {
             miner_id: id.clone(),
             window_post_proof_type: RegisteredPoStProof::StackedDRGWindow32GiBV1,

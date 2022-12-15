@@ -29,11 +29,6 @@ pub fn custody_miner(params: u32) -> Option<RawBytes> {
         None => {},
     }
 
-    // TODO: get miner power
-    // TODO: get miner collateral
-    // TODO: get miner available balance
-    // TODO: get miner vesting
-
     let mut miner = Miner::from_id(&params.miner_id);
     miner.set_beneficiaries(params.beneficiaries);
 
