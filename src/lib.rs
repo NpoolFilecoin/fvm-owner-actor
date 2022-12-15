@@ -1,8 +1,9 @@
 #[macro_use]
 extern crate abort;
 
+use api::custody::*;
+
 use state::State;
-use custody::*;
 use deposit::*;
 use nft::*;
 use upgrade::*;

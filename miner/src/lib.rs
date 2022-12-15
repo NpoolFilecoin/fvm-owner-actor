@@ -9,6 +9,7 @@ use cid::Cid;
 use power::{get_power_actor_state, PowerError};
 use thiserror::Error;
 use blockstore::Blockstore;
+use beneficiary::{PercentBeneficiary, AmountBeneficiary};
 
 #[derive(Error, Debug)]
 pub enum MinerError {
@@ -18,12 +19,10 @@ pub enum MinerError {
     FvmIpldHamtError(#[from] HamtError),
     #[error("invalid miner state")]
     InvalidMinerStateError,
-}
-
-#[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
-pub struct Beneficiary {
-    pub address: Address,
-    pub percent: u32,
+    #[error("invalid percent value")]
+    InvalidPercentValueError,
+    #[error("invalid amount value")]
+    InvalidAmountValueError,
 }
 
 #[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
@@ -37,7 +36,10 @@ pub struct Miner {
     pub initial_raw_power: StoragePower,
     #[serde(with = "bigint_ser")]
     pub initial_adj_power: StoragePower,
-    pub beneficiaries: Vec<Beneficiary>,
+    /// Initial beneficiaries, e.g. hardware investor, operator, etc.
+    pub percent_beneficiaries: Vec<PercentBeneficiary>,
+    /// Amount beneficiaries, e.g. exist collateral investor
+    pub amount_beneficiaries: Vec<AmountBeneficiary>,
 }
 
 impl Miner {
@@ -50,12 +52,21 @@ impl Miner {
             initial_available: TokenAmount::from_atto(0),
             initial_raw_power: StoragePower::from(0),
             initial_adj_power: StoragePower::from(0),
-            beneficiaries: Vec::new(),
+            percent_beneficiaries: Vec::new(),
+            amount_beneficiaries: Vec::new(),
         }
     }
 
-    pub fn set_beneficiaries(&mut self, beneficiaries: Vec<Beneficiary>) {
-        self.beneficiaries = beneficiaries;
+    pub fn set_percent_beneficiaries(&mut self, beneficiaries: Vec<PercentBeneficiary>) -> Result<(), MinerError> {
+        self.percent_beneficiaries = beneficiaries;
+        // TODO: sum of percent should be less than 100
+        Ok(())
+    }
+
+    pub fn set_amount_beneficiaries(&mut self, beneficiaries: Vec<AmountBeneficiary>) -> Result<(), MinerError> {
+        self.amount_beneficiaries = beneficiaries;
+        // TODO: sum of amount should be less than exist collaterral
+        Ok(())
     }
 
     pub fn initialize_info(&mut self, power_actor_state: &Cid) -> Result<(), MinerError> {

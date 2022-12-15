@@ -17,5 +17,11 @@ workspace = true
 [dependencies.fvm_shared]
 workspace = true
 
+[dependencies.serde]
+workspace = true
+
+[dependencies.serde_tuple]
+workspace = true
+
 [build-dependencies]
 substrate-wasm-builder = "4.0.0"

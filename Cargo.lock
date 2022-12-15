@@ -27,6 +27,25 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "216261ddc8289130e551ddcd5ce8a064710c0d064a4d2895c67151c92b5443f6"
 
 [[package]]
+name = "api"
+version = "0.1.0"
+dependencies = [
+ "abort",
+ "beneficiary",
+ "cid",
+ "custody",
+ "fvm_ipld_encoding",
+ "fvm_sdk",
+ "fvm_shared",
+ "params",
+ "serde",
+ "serde_tuple",
+ "state",
+ "substrate-wasm-builder",
+ "thiserror",
+]
+
+[[package]]
 name = "arrayref"
 version = "0.3.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -60,6 +79,17 @@ name = "base-x"
 version = "0.2.11"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4cbbc9d0964165b47557570cce6c952866c2678457aca742aafc9fb771d30270"
+
+[[package]]
+name = "beneficiary"
+version = "0.1.0"
+dependencies = [
+ "fvm_ipld_encoding",
+ "fvm_shared",
+ "serde",
+ "serde_tuple",
+ "substrate-wasm-builder",
+]
 
 [[package]]
 name = "bitflags"
@@ -212,6 +242,7 @@ name = "custody"
 version = "0.1.0"
 dependencies = [
  "abort",
+ "beneficiary",
  "cid",
  "fvm_ipld_encoding",
  "fvm_sdk",
@@ -222,6 +253,7 @@ dependencies = [
  "serde_tuple",
  "state",
  "substrate-wasm-builder",
+ "thiserror",
 ]
 
 [[package]]
@@ -341,6 +373,8 @@ version = "0.1.0"
 dependencies = [
  "abort",
  "anyhow",
+ "api",
+ "beneficiary",
  "blockstore",
  "cid",
  "custody",
@@ -494,6 +528,7 @@ name = "miner"
 version = "0.1.0"
 dependencies = [
  "abort",
+ "beneficiary",
  "blockstore",
  "cid",
  "fvm_ipld_encoding",
@@ -769,6 +804,8 @@ dependencies = [
  "fvm_ipld_encoding",
  "fvm_sdk",
  "fvm_shared",
+ "serde",
+ "serde_tuple",
  "substrate-wasm-builder",
 ]
 
@@ -925,15 +962,18 @@ name = "state"
 version = "0.1.0"
 dependencies = [
  "abort",
+ "beneficiary",
  "blockstore",
  "cid",
  "fvm_ipld_encoding",
  "fvm_sdk",
  "fvm_shared",
  "miner",
+ "sealing",
  "serde",
  "serde_tuple",
  "substrate-wasm-builder",
+ "upgrade",
 ]
 
 [[package]]
@@ -1053,9 +1093,12 @@ name = "upgrade"
 version = "0.1.0"
 dependencies = [
  "abort",
+ "cid",
  "fvm_ipld_encoding",
  "fvm_sdk",
  "fvm_shared",
+ "serde",
+ "serde_tuple",
  "substrate-wasm-builder",
 ]
 

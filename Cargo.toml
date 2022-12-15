@@ -19,6 +19,8 @@ members = [
     "withdraw",
     "miner",
     "power",
+    "beneficiary",
+    "api",
 ]
 
 [workspace.dependencies]
@@ -45,6 +47,8 @@ sealing              = { path = "./sealing" }
 withdraw             = { path = "./withdraw" }
 miner                = { path = "./miner" }
 power                = { path = "./power" }
+beneficiary          = { path = "./beneficiary" }
+api                  = { path = "./api" }
 thiserror            = "1.0.37"
 
 [dependencies.blockstore]
@@ -81,6 +85,12 @@ workspace = true
 workspace = true
 
 [dependencies.power]
+workspace = true
+
+[dependencies.api]
+workspace = true
+
+[dependencies.beneficiary]
 workspace = true
 
 [dependencies.fvm_sdk]

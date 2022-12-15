@@ -35,5 +35,11 @@ workspace = true
 [dependencies.params]
 workspace = true
 
+[dependencies.thiserror]
+workspace = true
+
+[dependencies.beneficiary]
+workspace = true
+
 [build-dependencies]
 substrate-wasm-builder = "4.0.0"

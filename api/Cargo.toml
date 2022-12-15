@@ -1,7 +1,7 @@
 cargo-features = ["workspace-inheritance"]
 
 [package]
-name = "upgrade"
+name = "api"
 version = "0.1.0"
 edition = "2021"
 
@@ -11,19 +11,34 @@ workspace = true
 [dependencies.fvm_ipld_encoding]
 workspace = true
 
-[dependencies.abort]
-workspace = true
-
 [dependencies.fvm_shared]
 workspace = true
 
 [dependencies.serde]
 workspace = true
 
+[dependencies.abort]
+workspace = true
+
 [dependencies.serde_tuple]
 workspace = true
 
 [dependencies.cid]
+workspace = true
+
+[dependencies.state]
+workspace = true
+
+[dependencies.params]
+workspace = true
+
+[dependencies.thiserror]
+workspace = true
+
+[dependencies.beneficiary]
+workspace = true
+
+[dependencies.custody]
 workspace = true
 
 [build-dependencies]

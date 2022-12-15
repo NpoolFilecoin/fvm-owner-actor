@@ -1,17 +1,11 @@
 cargo-features = ["workspace-inheritance"]
 
 [package]
-name = "upgrade"
+name = "beneficiary"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies.fvm_sdk]
-workspace = true
-
 [dependencies.fvm_ipld_encoding]
-workspace = true
-
-[dependencies.abort]
 workspace = true
 
 [dependencies.fvm_shared]
@@ -21,9 +15,6 @@ workspace = true
 workspace = true
 
 [dependencies.serde_tuple]
-workspace = true
-
-[dependencies.cid]
 workspace = true
 
 [build-dependencies]

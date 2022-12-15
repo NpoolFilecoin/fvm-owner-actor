@@ -5,7 +5,6 @@ use std::collections::HashMap;
 
 use fvm_sdk as sdk;
 use fvm_shared::address::Address;
-use fvm_shared::econ::TokenAmount;
 
 use fvm_ipld_encoding::DAG_CBOR;
 use fvm_ipld_encoding::to_vec;
@@ -17,31 +16,14 @@ use cid::Cid;
 
 use blockstore::Blockstore;
 use miner::Miner;
-
-#[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
-pub struct Deposit {
-    pub address: Address,
-    pub amount: TokenAmount,
-}
-
-#[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
-pub struct Upgrade {
-    pub candidate: Cid,
-    pub submitter: Address,
-    pub approved_percent: u32,
-    pub rejected_percent: u32,
-}
-
-#[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
-pub struct Sealing {
-    pub approved_percent: u32,
-    pub rejected_percent: u32,
-}
+use beneficiary::AmountBeneficiary;
+use upgrade::Upgrade;
+use sealing::Sealing;
 
 #[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
 pub struct State {
     pub miners: HashMap<Address, Miner>,
-    pub deposits: Vec<Deposit>,
+    pub deposits: Vec<AmountBeneficiary>,
     pub upgrade: Option<Upgrade>,
     pub sealing: Sealing,
 }

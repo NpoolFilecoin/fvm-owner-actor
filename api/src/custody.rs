@@ -1,44 +1,52 @@
-#[macro_use]
-extern crate abort;
-
 use fvm_ipld_encoding::RawBytes;
 use fvm_ipld_encoding::Cbor;
 use fvm_ipld_encoding::tuple::{Deserialize_tuple, Serialize_tuple};
 use fvm_shared::address::Address;
 
 use cid::Cid;
-use thiserror::Error;
 
-use miner::{Miner, MinerError};
-use beneficiary::{PercentBeneficiary, AmountBeneficiary};
+use state::State;
 use params::deserialize;
+use beneficiary::{PercentBeneficiary, AmountBeneficiary};
 
-#[derive(Error, Debug)]
-pub enum CustodyError {
-    #[error("miner call error {0}")]
-    MinerCallError(#[from] MinerError),
+use custody;
+
+#[derive(Serialize_tuple, Deserialize_tuple, Clone)]
+pub struct CustodyMinerParams {
+    pub miner_id: Address,
+    /// We cannot get power actor state here, so we need pass it outside
+    pub power_actor_state: Cid,
+    pub percent_beneficiaries: Vec<PercentBeneficiary>,
+    pub amount_beneficiaries: Vec<AmountBeneficiary>,
 }
+impl Cbor for CustodyMinerParams {}
 
-pub fn custody_miner(
-    miner_id: &Address,
-    power_actor_state: &Cid,
-    percent_beneficiaries: Vec<PercentBeneficiary>,
-    amount_beneficiaries: Vec<AmountBeneficiary>,
-) -> Result<Miner, CustodyError> {
-    let mut miner = Miner::from_id(miner_id);
-    match miner.initialize_info(power_actor_state) {
-        Ok(_) => {},
-        Err(err) => return Err(CustodyError::MinerCallError(err)),
-    }
-    match miner.set_percent_beneficiaries(percent_beneficiaries) {
-        Ok(_) => {},
-        Err(err) => return Err(CustodyError::MinerCallError(err)),
+pub fn custody_miner(params: u32) -> Option<RawBytes> {
+    let params = match deserialize::<CustodyMinerParams>(params) {
+        Ok(params) => params,
+        Err(err) => abort!(USR_SERIALIZATION, "{:?}", err),
     };
-    match miner.set_amount_beneficiaries(amount_beneficiaries) {
-        Ok(_) => {},
-        Err(err) => return Err(CustodyError::MinerCallError(err)),
+
+    let mut state = State::load();
+    match state.miners.get(&params.miner_id) {
+        Some(_) => abort!(USR_ILLEGAL_STATE, "exist miner"),
+        None => {},
     }
-    Ok(miner)
+
+    let miner = match custody::custody_miner(
+        &params.miner_id,
+        &params.power_actor_state,
+        params.percent_beneficiaries,
+        params.amount_beneficiaries,
+    ) {
+        Ok(miner) => miner,
+        Err(err) => abort!(USR_ILLEGAL_STATE, "{:?}", err),
+    };
+
+    state.miners.insert(params.miner_id, miner);
+    state.save();
+
+    None
 }
 
 #[derive(Serialize_tuple, Deserialize_tuple, Clone)]

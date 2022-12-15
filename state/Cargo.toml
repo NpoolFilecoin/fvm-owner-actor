@@ -20,6 +20,15 @@ workspace = true
 [dependencies.abort]
 workspace = true
 
+[dependencies.upgrade]
+workspace = true
+
+[dependencies.sealing]
+workspace = true
+
+[dependencies.beneficiary]
+workspace = true
+
 [dependencies.serde_tuple]
 workspace = true
 

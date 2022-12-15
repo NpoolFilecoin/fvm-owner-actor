@@ -38,5 +38,8 @@ workspace = true
 [dependencies.fvm_ipld_hamt]
 workspace = true
 
+[dependencies.beneficiary]
+workspace = true
+
 [build-dependencies]
 substrate-wasm-builder = "4.0.0"
