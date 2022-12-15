@@ -1,10 +1,13 @@
+#[macro_use]
+extern crate abort;
+
 use fvm_ipld_encoding::RawBytes;
 use fvm_ipld_encoding::Cbor;
 use fvm_ipld_encoding::tuple::{Deserialize_tuple, Serialize_tuple};
 use fvm_shared::address::Address;
 
-use crate::state::Beneficiary;
-use crate::params::deserialize;
+use state::Beneficiary;
+use params::deserialize;
 
 #[derive(Serialize_tuple, Deserialize_tuple, Clone)]
 pub struct CustodyMinerParams {

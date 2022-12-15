@@ -1,9 +1,6 @@
 #[macro_use]
 extern crate abort;
 
-mod custody;
-use crate::custody::*;
-
 mod deposit;
 use crate::deposit::*;
 
@@ -19,10 +16,8 @@ use crate::withdraw::*;
 mod sealing;
 use crate::sealing::*;
 
-mod state;
-use crate::state::*;
-
-mod params;
+use state::State;
+use custody::*;
 
 use num_derive::FromPrimitive;
 use num_traits::FromPrimitive;

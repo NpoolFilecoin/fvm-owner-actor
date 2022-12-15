@@ -1,11 +1,23 @@
 cargo-features = ["workspace-inheritance"]
 
 [package]
-name = "abort"
+name = "params"
 version = "0.1.0"
 edition = "2021"
 
+[dependencies.abort]
+workspace = true
+
 [dependencies.fvm_sdk]
+workspace = true
+
+[dependencies.fvm_ipld_encoding]
+workspace = true
+
+[dependencies.serde]
+workspace = true
+
+[dependencies.serde_tuple]
 workspace = true
 
 [dependencies.fvm_shared]

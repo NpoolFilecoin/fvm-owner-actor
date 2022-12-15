@@ -9,6 +9,9 @@ edition = "2021"
 members = [
     "blockstore",
     "abort",
+    "custody",
+    "params",
+    "state",
 ]
 
 [workspace.dependencies]
@@ -24,11 +27,23 @@ serde_tuple          = "0.5"
 anyhow               = "1.0.66"
 blockstore           = { path = "./blockstore" }
 abort                = { path = "./abort" }
+custody              = { path = "./custody" }
+params               = { path = "./params" }
+state                = { path = "./state" }
 
 [dependencies.blockstore]
 workspace = true
 
 [dependencies.abort]
+workspace = true
+
+[dependencies.custody]
+workspace = true
+
+[dependencies.params]
+workspace = true
+
+[dependencies.state]
 workspace = true
 
 [dependencies.fvm_sdk]

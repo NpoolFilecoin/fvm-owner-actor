@@ -1,0 +1,33 @@
+cargo-features = ["workspace-inheritance"]
+
+[package]
+name = "state"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies.fvm_sdk]
+workspace = true
+
+[dependencies.fvm_ipld_encoding]
+workspace = true
+
+[dependencies.fvm_shared]
+workspace = true
+
+[dependencies.serde]
+workspace = true
+
+[dependencies.abort]
+workspace = true
+
+[dependencies.serde_tuple]
+workspace = true
+
+[dependencies.cid]
+workspace = true
+
+[dependencies.blockstore]
+workspace = true
+
+[build-dependencies]
+substrate-wasm-builder = "4.0.0"

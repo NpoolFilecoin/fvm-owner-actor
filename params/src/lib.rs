@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate abort;
+
 use fvm_ipld_encoding::RawBytes;
 use fvm_sdk as sdk;
 

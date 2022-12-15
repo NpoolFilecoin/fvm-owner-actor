@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate abort;
+
 use std::collections::HashMap;
 
 use fvm_sdk as sdk;
