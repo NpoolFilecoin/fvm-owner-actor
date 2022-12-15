@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate abort;
+
 use fvm_ipld_encoding::RawBytes;
 
 /// Transfer nft to somebody then also transfer the amount benefit to target user

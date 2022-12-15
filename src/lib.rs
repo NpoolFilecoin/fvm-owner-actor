@@ -1,23 +1,13 @@
 #[macro_use]
 extern crate abort;
 
-mod deposit;
-use crate::deposit::*;
-
-mod nft;
-use crate::nft::*;
-
-mod upgrade;
-use crate::upgrade::*;
-
-mod withdraw;
-use crate::withdraw::*;
-
-mod sealing;
-use crate::sealing::*;
-
 use state::State;
 use custody::*;
+use deposit::*;
+use nft::*;
+use upgrade::*;
+use withdraw::*;
+use sealing::*;
 
 use num_derive::FromPrimitive;
 use num_traits::FromPrimitive;

@@ -1,3 +1,6 @@
+#[macro_use]
+extern crate abort;
+
 use fvm_ipld_encoding::RawBytes;
 
 pub fn withdraw_balance(_params: u32) -> Option<RawBytes> {

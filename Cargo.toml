@@ -12,6 +12,11 @@ members = [
     "custody",
     "params",
     "state",
+    "deposit",
+    "nft",
+    "upgrade",
+    "sealing",
+    "withdraw",
 ]
 
 [workspace.dependencies]
@@ -30,6 +35,11 @@ abort                = { path = "./abort" }
 custody              = { path = "./custody" }
 params               = { path = "./params" }
 state                = { path = "./state" }
+deposit              = { path = "./deposit" }
+nft                  = { path = "./nft" }
+upgrade              = { path = "./upgrade" }
+sealing              = { path = "./sealing" }
+withdraw             = { path = "./withdraw" }
 
 [dependencies.blockstore]
 workspace = true
@@ -44,6 +54,21 @@ workspace = true
 workspace = true
 
 [dependencies.state]
+workspace = true
+
+[dependencies.deposit]
+workspace = true
+
+[dependencies.nft]
+workspace = true
+
+[dependencies.upgrade]
+workspace = true
+
+[dependencies.sealing]
+workspace = true
+
+[dependencies.withdraw]
 workspace = true
 
 [dependencies.fvm_sdk]

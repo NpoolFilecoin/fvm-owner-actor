@@ -240,6 +240,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "deposit"
+version = "0.1.0"
+dependencies = [
+ "abort",
+ "fvm_ipld_encoding",
+ "fvm_sdk",
+ "fvm_shared",
+ "substrate-wasm-builder",
+]
+
+[[package]]
 name = "digest"
 version = "0.10.6"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -293,16 +304,21 @@ dependencies = [
  "blockstore",
  "cid",
  "custody",
+ "deposit",
  "fvm_ipld_encoding",
  "fvm_sdk",
  "fvm_shared",
+ "nft",
  "num-derive",
  "num-traits",
  "params",
+ "sealing",
  "serde",
  "serde_tuple",
  "state",
  "substrate-wasm-builder",
+ "upgrade",
+ "withdraw",
 ]
 
 [[package]]
@@ -457,6 +473,17 @@ dependencies = [
  "quote",
  "syn",
  "synstructure",
+]
+
+[[package]]
+name = "nft"
+version = "0.1.0"
+dependencies = [
+ "abort",
+ "fvm_ipld_encoding",
+ "fvm_sdk",
+ "fvm_shared",
+ "substrate-wasm-builder",
 ]
 
 [[package]]
@@ -637,6 +664,17 @@ name = "scopeguard"
 version = "1.1.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d29ab0c6d3fc0ee92fe66e2d99f700eab17a8d57d1c1d3b748380fb20baa78cd"
+
+[[package]]
+name = "sealing"
+version = "0.1.0"
+dependencies = [
+ "abort",
+ "fvm_ipld_encoding",
+ "fvm_sdk",
+ "fvm_shared",
+ "substrate-wasm-builder",
+]
 
 [[package]]
 name = "semver"
@@ -914,6 +952,17 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "d86a8dc7f45e4c1b0d30e43038c38f274e77af056aa5f74b93c2cf9eb3c1c836"
 
 [[package]]
+name = "upgrade"
+version = "0.1.0"
+dependencies = [
+ "abort",
+ "fvm_ipld_encoding",
+ "fvm_sdk",
+ "fvm_shared",
+ "substrate-wasm-builder",
+]
+
+[[package]]
 name = "version_check"
 version = "0.9.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -971,3 +1020,14 @@ name = "winapi-x86_64-pc-windows-gnu"
 version = "0.4.0"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "712e227841d057c1ee1cd2fb22fa7e5a5461ae8e48fa2ca79ec42cfc1931183f"
+
+[[package]]
+name = "withdraw"
+version = "0.1.0"
+dependencies = [
+ "abort",
+ "fvm_ipld_encoding",
+ "fvm_sdk",
+ "fvm_shared",
+ "substrate-wasm-builder",
+]
