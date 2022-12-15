@@ -1,10 +1,40 @@
 use fvm_ipld_encoding::RawBytes;
+use fvm_ipld_encoding::Cbor;
+use fvm_ipld_encoding::tuple::{Deserialize_tuple, Serialize_tuple};
+use fvm_shared::address::Address;
 
-pub fn custody_miner(_params: u32) -> Option<RawBytes> {
+use crate::state::Beneficiary;
+use crate::params::deserialize;
+
+#[derive(Serialize_tuple, Deserialize_tuple, Clone)]
+pub struct CustodyMinerParams {
+    pub miner_id: Address,
+    pub beneficiaries: Vec<Beneficiary>,
+}
+impl Cbor for CustodyMinerParams {}
+
+pub fn custody_miner(params: u32) -> Option<RawBytes> {
+    let _params = match deserialize::<CustodyMinerParams>(params) {
+        Ok(params) => params,
+        Err(err) => abort!(USR_SERIALIZATION, "{:?}", err),
+    };
+
     abort!(USR_UNHANDLED_MESSAGE, "not implemented")
 }
 
-pub fn change_worker_address(_params: u32) -> Option<RawBytes> {
+#[derive(Serialize_tuple, Deserialize_tuple, Clone)]
+pub struct ChangeWorkerAddressParams {
+    pub miner_id: Address,
+    pub new_worker: Address,
+}
+impl Cbor for ChangeWorkerAddressParams {}
+
+pub fn change_worker_address(params: u32) -> Option<RawBytes> {
+    let _params = match deserialize::<ChangeWorkerAddressParams>(params) {
+        Ok(params) => params,
+        Err(err) => abort!(USR_SERIALIZATION, "{:?}", err),
+    };
+
     abort!(USR_UNHANDLED_MESSAGE, "not implemented")
 }
 

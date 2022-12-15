@@ -23,6 +23,7 @@ mod state;
 use crate::state::*;
 
 mod blockstore;
+mod params;
 
 use num_derive::FromPrimitive;
 use num_traits::FromPrimitive;
