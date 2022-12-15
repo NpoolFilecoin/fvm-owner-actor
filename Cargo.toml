@@ -1,19 +1,57 @@
+cargo-features = ["workspace-inheritance"]
+
 [package]
-name = "fil_owner_actor"
+name = "fvm_owner_actor"
 version = "0.1.0"
 edition = "2021"
 
-[dependencies]
-fvm_sdk           = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
-fvm_shared        = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
-fvm_ipld_encoding = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
-fvm_ipld_blockstore = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
-num-derive        = "0.3.3"
-num-traits        = "0.2.15"
-cid               = { version = "0.8.4", default-features = false }
-serde             = { version = "1.0.136", features = ["derive"] }
-serde_tuple       = "0.5"
-anyhow            = "1.0.66"
+[workspace]
+members = [
+    "blockstore",
+]
+
+[workspace.dependencies]
+fvm_sdk              = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
+fvm_shared           = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
+fvm_ipld_encoding    = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
+fvm_ipld_blockstore  = { git = "https://github.com/filecoin-project/ref-fvm.git", rev = "a8f15212" }
+num-derive           = "0.3.3"
+num-traits           = "0.2.15"
+cid                  = { version = "0.8.4", default-features = false }
+serde                = { version = "1.0.136", features = ["derive"] }
+serde_tuple          = "0.5"
+anyhow               = "1.0.66"
+blockstore           = { path = "./blockstore" }
+
+[dependencies.blockstore]
+workspace = true
+
+[dependencies.fvm_sdk]
+workspace = true
+
+[dependencies.fvm_shared]
+workspace = true
+
+[dependencies.fvm_ipld_encoding]
+workspace = true
+
+[dependencies.num-derive]
+workspace = true
+
+[dependencies.num-traits]
+workspace = true
+
+[dependencies.cid]
+workspace = true
+
+[dependencies.serde]
+workspace = true
+
+[dependencies.serde_tuple]
+workspace = true
+
+[dependencies.anyhow]
+workspace = true
 
 [build-dependencies]
 substrate-wasm-builder = "4.0.0"

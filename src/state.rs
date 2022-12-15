@@ -12,7 +12,7 @@ use fvm_ipld_encoding::CborStore;
 use cid::multihash::Code;
 use cid::Cid;
 
-use crate::blockstore::Blockstore;
+use blockstore::Blockstore;
 
 #[derive(Serialize_tuple, Deserialize_tuple, Clone, Debug)]
 pub struct Beneficiary {

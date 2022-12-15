@@ -22,7 +22,6 @@ use crate::sealing::*;
 mod state;
 use crate::state::*;
 
-mod blockstore;
 mod params;
 
 use num_derive::FromPrimitive;

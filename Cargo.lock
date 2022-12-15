@@ -79,6 +79,17 @@ dependencies = [
 ]
 
 [[package]]
+name = "blockstore"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "cid",
+ "fvm_ipld_blockstore",
+ "fvm_sdk",
+ "substrate-wasm-builder",
+]
+
+[[package]]
 name = "build-helper"
 version = "0.1.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -224,23 +235,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "fil_owner_actor"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "cid",
- "fvm_ipld_blockstore",
- "fvm_ipld_encoding",
- "fvm_sdk",
- "fvm_shared",
- "num-derive",
- "num-traits",
- "serde",
- "serde_tuple",
- "substrate-wasm-builder",
-]
-
-[[package]]
 name = "fvm_ipld_blockstore"
 version = "0.1.1"
 source = "git+https://github.com/filecoin-project/ref-fvm.git?rev=a8f15212#a8f15212940faa3074848605a19cd9ede286e1ef"
@@ -264,6 +258,23 @@ dependencies = [
  "serde_repr",
  "serde_tuple",
  "thiserror",
+]
+
+[[package]]
+name = "fvm_owner_actor"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "blockstore",
+ "cid",
+ "fvm_ipld_encoding",
+ "fvm_sdk",
+ "fvm_shared",
+ "num-derive",
+ "num-traits",
+ "serde",
+ "serde_tuple",
+ "substrate-wasm-builder",
 ]
 
 [[package]]
