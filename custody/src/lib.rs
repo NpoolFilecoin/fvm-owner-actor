@@ -36,7 +36,7 @@ pub fn custody_miner(params: u32) -> Option<RawBytes> {
 
     state.save();
 
-    abort!(USR_UNHANDLED_MESSAGE, "not implemented")
+    None
 }
 
 #[derive(Serialize_tuple, Deserialize_tuple, Clone)]
