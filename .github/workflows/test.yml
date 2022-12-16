@@ -19,9 +19,10 @@ jobs:
           - nightly
     steps:
       - uses: actions/checkout@v3
+        with:
+          packages: protobuf-compiler
       - run: rustup install nightly-x86_64-unknown-linux-gnu
       - run: rustup target add wasm32-unknown-unknown --toolchain nightly
       - run: rustup update ${{ matrix.toolchain }} && rustup default ${{ matrix.toolchain }}
-      - run: apt install protobuf-compiler
       - run: cargo build --verbose
       - run: cargo test --verbose
